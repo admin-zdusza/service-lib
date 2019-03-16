@@ -6,7 +6,7 @@ public class LocaleValidator {
 
     public final void validate() {
         if (!Locale.getDefault().equals(new Locale("pl", "PL"))) {
-            throw new RuntimeException("Invalid locale:" + Locale.getDefault());
+            throw new RuntimeException("Invalid locale: " + Locale.getDefault());
         }
     }
 }

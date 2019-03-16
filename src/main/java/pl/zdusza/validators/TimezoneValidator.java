@@ -7,7 +7,7 @@ public class TimezoneValidator {
 
     public final void validate() {
         if (!TimeZone.getDefault().equals(TimeZone.getTimeZone(ZoneId.of("UTC")))) {
-            throw new RuntimeException("Invalid timezone:" + TimeZone.getDefault());
+            throw new RuntimeException("Invalid timezone: " + TimeZone.getDefault());
         }
     }
 }

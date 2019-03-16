@@ -30,6 +30,14 @@ public class ServiceTest {
     private Message<String> message;
 
     @Test
+    public final void testShouldRCSucced() {
+        Service.doInTryCatch(Future.succeededFuture(), routingContext, () -> {
+        }, new Timer(new Clock(), "", LOGGER));
+        Mockito.verify(routingContext, Mockito.times(0)).fail(TEST_EXCEPTION);
+    }
+
+
+    @Test
     public final void testShouldRCFailWhenThrowingException() {
         Service.doInTryCatch(Future.succeededFuture(), routingContext, () -> {
             throw TEST_EXCEPTION;
@@ -42,6 +50,12 @@ public class ServiceTest {
         Service.doInTryCatch(Future.failedFuture(TEST_EXCEPTION), routingContext, () -> {
         }, new Timer(new Clock(), "", LOGGER));
         Mockito.verify(routingContext).fail(TEST_EXCEPTION);
+    }
+
+    @Test
+    public final void testShouldMSGSucced() {
+        Service.doInTryCatch(Future.succeededFuture(), message, new Timer(new Clock(), "", LOGGER));
+        Mockito.verify(message, Mockito.times(0)).fail(Mockito.anyInt(), Mockito.any());
     }
 
     @Test
