@@ -32,8 +32,9 @@ public class ServiceTest {
     @Test
     public final void testShouldRCSucced() {
         Service.doInTryCatch(Future.succeededFuture(), routingContext, () -> {
+            routingContext.response();
         }, new Timer(new Clock(), "", LOGGER));
-        Mockito.verify(routingContext, Mockito.times(0)).fail(TEST_EXCEPTION);
+        Mockito.verify(routingContext).response();
     }
 
 
@@ -55,20 +56,18 @@ public class ServiceTest {
     @Test
     public final void testShouldMSGSucced() {
         Service.doInTryCatch(Future.succeededFuture(), message, new Timer(new Clock(), "", LOGGER));
-        Mockito.verify(message, Mockito.times(0)).fail(Mockito.anyInt(), Mockito.any());
+        Mockito.verify(message).reply(Mockito.any());
     }
 
     @Test
     public final void testShouldMSGFailWhenThrowingException() {
         Mockito.doThrow(TEST_EXCEPTION).when(message).reply(Mockito.any());
-        Mockito.doNothing().when(message).fail(Mockito.anyInt(), Mockito.any());
         Service.doInTryCatch(Future.succeededFuture(), message, new Timer(new Clock(), "", LOGGER));
         Mockito.verify(message).fail(Mockito.anyInt(), Mockito.any());
     }
 
     @Test
     public final void testShouldMSGFailWhenFailing() {
-        Mockito.doNothing().when(message).fail(Mockito.anyInt(), Mockito.any());
         Service.doInTryCatch(Future.failedFuture(TEST_EXCEPTION), message, new Timer(new Clock(), "", LOGGER));
         Mockito.verify(message).fail(Mockito.anyInt(), Mockito.any());
     }
