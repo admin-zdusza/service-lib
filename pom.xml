@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.zdusza</groupId>
     <artifactId>service-lib</artifactId>
-    <version>3.0.0</version>
+    <version>3.1.0</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
 
@@ -14,6 +14,7 @@
         <dao-lib.version>2.1.0</dao-lib.version>
         <java.version>10</java.version>
         <vertx.version>3.5.4</vertx.version>
+        <commons.version>1.6</commons.version>
         <slf4j.version>1.7.25</slf4j.version>
         <logback.version>1.2.3</logback.version>
         <junit.version>4.12</junit.version>
@@ -37,6 +38,11 @@
             <groupId>io.vertx</groupId>
             <artifactId>vertx-web</artifactId>
             <version>${vertx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${commons.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

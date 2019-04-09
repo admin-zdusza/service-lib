@@ -36,7 +36,7 @@ public class ServiceTest {
         }, new Timer(new Clock(), "", eventLogger));
         Mockito.verify(routingContext).response();
     }
-    
+
     @Test
     public final void testShouldRCFailWhenThrowingException() {
         Service.doInTryCatch(Future.succeededFuture(), routingContext, () -> {

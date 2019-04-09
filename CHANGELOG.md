@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.0] - 2019-04-09
+### Added
+- Enum validator
+
 ## [3.0.0] - 2019-03-14
 ### Changed
 - Domain lib version
