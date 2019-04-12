@@ -20,7 +20,7 @@ public final class EnumValidator {
         final String value = context.request().getParam(pathParam);
         final Optional<T> result = EnumParser.parse(value, clazz);
         final Set<T> possibleValuesSet = new LinkedHashSet<>(Arrays.asList(possibleValues));
-        if (!result.isPresent() || !possibleValuesSet.contains(result.get())) {
+        if(!result.isPresent() || !possibleValuesSet.contains(result.get())) {
             context.response().setStatusCode(Statuses.BAD_REQUEST);
             context.response().end(Statuses.BAD_REQUEST_MSG + ". Wrong path param " + pathParam + ": " + value
                     + ". Possible values are: "
@@ -30,14 +30,14 @@ public final class EnumValidator {
     }
 
     public static <T extends Enum<T>> Optional<T> validateHeader(final RoutingContext context,
-                                                                    final String header,
-                                                                    final T[] possibleValues,
-                                                                    final Class<T> clazz) {
+                                                                 final String header,
+                                                                 final T[] possibleValues,
+                                                                 final Class<T> clazz) {
         final Optional<String> value = Optional.ofNullable(context.request().getHeader(header));
-        if (value.isPresent()) {
+        if(value.isPresent()) {
             final Optional<T> result = EnumParser.parse(value.get(), clazz);
             final Set<T> possibleValuesSet = new LinkedHashSet<>(Arrays.asList(possibleValues));
-            if (!result.isPresent() || !possibleValuesSet.contains(result.get())) {
+            if(!result.isPresent() || !possibleValuesSet.contains(result.get())) {
                 context.response().setStatusCode(Statuses.BAD_REQUEST);
                 context.response().end(Statuses.BAD_REQUEST_MSG + ". Wrong header " + header + ": " + value
                         + ". Possible values are: "
@@ -45,6 +45,10 @@ public final class EnumValidator {
             }
             return result;
         }
+        context.response().setStatusCode(Statuses.BAD_REQUEST);
+        context.response().end(Statuses.BAD_REQUEST_MSG + ". Empty header " + header
+                + ". Possible values are: "
+                + EnumParser.format(possibleValues));
         return Optional.empty();
     }
 }
