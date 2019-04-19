@@ -6,6 +6,7 @@ import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpClient;
 import io.vertx.core.http.HttpClientRequest;
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.unit.Async;
 import io.vertx.ext.unit.TestContext;
@@ -35,15 +36,21 @@ public class HttpResponseHandlerTest {
             @Override
             public void start(final Future<Void> future) {
                 Router router = Router.router(vertx);
+                router.get("/testvoid")
+                        .handler((routingContext) -> routingContext.response().end());
                 router.get("/testjsonobject")
                         .handler((routingContext) -> routingContext.response().end(new JsonObject()
                                 .put("test", "test").toBuffer()));
-                router.get("/testvoid")
-                        .handler((routingContext) -> routingContext.response().end());
+                router.get("/testjsonarray")
+                        .handler((routingContext) -> routingContext.response().end(new JsonArray()
+                                .add("test").toBuffer()));
+                router.get("/testvoidfail")
+                        .handler((routingContext) -> routingContext.response().setStatusCode(Statuses.BAD_REQUEST)
+                                .end());
                 router.get("/testjsonobjectfail")
                         .handler((routingContext) -> routingContext.response().setStatusCode(Statuses.BAD_REQUEST)
                                 .end());
-                router.get("/testvoidfail")
+                router.get("/testjsonarrayfail")
                         .handler((routingContext) -> routingContext.response().setStatusCode(Statuses.BAD_REQUEST)
                                 .end());
                 vertx.createHttpServer().requestHandler(router::accept)
@@ -66,33 +73,6 @@ public class HttpResponseHandlerTest {
     }
 
     @Test
-    public final void shouldParseJsonResponse(final TestContext tc) {
-        final Async async = tc.async();
-        Future<JsonObject> f = Future.future();
-        HttpClientRequest request = this.httpClient.get(PORT, "localhost",
-                "/testjsonobject", HttpResponseHandler.jsonObject(f));
-        request.end();
-        f.setHandler(v -> {
-            tc.assertTrue(v.succeeded());
-            tc.assertEquals(v.result(), new JsonObject().put("test", "test"));
-            async.complete();
-        });
-    }
-
-    @Test
-    public final void shouldParseJsonResponseFailWhenResponseFails(final TestContext tc) {
-        final Async async = tc.async();
-        Future<JsonObject> f = Future.future();
-        HttpClientRequest request = this.httpClient.get(PORT, "localhost",
-                "/testjsonobjectfail", HttpResponseHandler.jsonObject(f));
-        request.end();
-        f.setHandler(v -> {
-            tc.assertTrue(v.failed());
-            async.complete();
-        });
-    }
-
-    @Test
     public final void shouldHandleVoidResponse(final TestContext tc) {
         final Async async = tc.async();
         Future<Void> f = Future.future();
@@ -111,6 +91,60 @@ public class HttpResponseHandlerTest {
         Future<Void> f = Future.future();
         HttpClientRequest request = this.httpClient.get(PORT, "localhost",
                 "/testvoidfail", HttpResponseHandler.voidResponse(f));
+        request.end();
+        f.setHandler(v -> {
+            tc.assertTrue(v.failed());
+            async.complete();
+        });
+    }
+
+    @Test
+    public final void shouldParseJsonObjectResponse(final TestContext tc) {
+        final Async async = tc.async();
+        Future<JsonObject> f = Future.future();
+        HttpClientRequest request = this.httpClient.get(PORT, "localhost",
+                "/testjsonobject", HttpResponseHandler.jsonObject(f));
+        request.end();
+        f.setHandler(v -> {
+            tc.assertTrue(v.succeeded());
+            tc.assertEquals(v.result(), new JsonObject().put("test", "test"));
+            async.complete();
+        });
+    }
+
+    @Test
+    public final void shouldParseJsonObjectResponseFailWhenResponseFails(final TestContext tc) {
+        final Async async = tc.async();
+        Future<JsonObject> f = Future.future();
+        HttpClientRequest request = this.httpClient.get(PORT, "localhost",
+                "/testjsonobjectfail", HttpResponseHandler.jsonObject(f));
+        request.end();
+        f.setHandler(v -> {
+            tc.assertTrue(v.failed());
+            async.complete();
+        });
+    }
+
+    @Test
+    public final void shouldParseJsonArrayResponse(final TestContext tc) {
+        final Async async = tc.async();
+        Future<JsonArray> f = Future.future();
+        HttpClientRequest request = this.httpClient.get(PORT, "localhost",
+                "/testjsonarray", HttpResponseHandler.jsonArray(f));
+        request.end();
+        f.setHandler(v -> {
+            tc.assertTrue(v.succeeded());
+            tc.assertEquals(v.result(), new JsonArray().add("test"));
+            async.complete();
+        });
+    }
+
+    @Test
+    public final void shouldParseJsonArrayResponseFailWhenResponseFails(final TestContext tc) {
+        final Async async = tc.async();
+        Future<JsonArray> f = Future.future();
+        HttpClientRequest request = this.httpClient.get(PORT, "localhost",
+                "/testjsonarrayfail", HttpResponseHandler.jsonArray(f));
         request.end();
         f.setHandler(v -> {
             tc.assertTrue(v.failed());

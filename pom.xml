@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.zdusza</groupId>
     <artifactId>service-lib</artifactId>
-    <version>3.2.1</version>
+    <version>3.3.0</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
 
