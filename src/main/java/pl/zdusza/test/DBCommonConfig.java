@@ -1,10 +1,14 @@
-package pl.zdusza;
+package pl.zdusza.test;
 
 import io.vertx.core.json.JsonObject;
 
 public final class DBCommonConfig {
 
     private DBCommonConfig() {
+    }
+
+    public static JsonObject getDbCommonConf() {
+        return getDbCommonConf("test", " test1234", "test", "test");
     }
 
     public static JsonObject getDbCommonConf(final String username, final String password, final String hostAndPort,

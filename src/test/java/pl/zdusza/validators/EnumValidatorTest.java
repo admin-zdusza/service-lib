@@ -39,6 +39,7 @@ public class EnumValidatorTest {
         Mockito.when(routingContext.request()).thenReturn(httpServerRequest);
         Mockito.when(httpServerRequest.getHeader("ws-app")).thenReturn(null);
         Mockito.when(routingContext.response()).thenReturn(httpServerResponse);
+        Mockito.when(httpServerResponse.setStatusCode(Mockito.anyInt())).thenReturn(httpServerResponse);
         Assert.assertFalse(EnumValidator.validateHeader(routingContext, "ws-app", App.values(),
                 App.class).isPresent());
     }
@@ -48,6 +49,7 @@ public class EnumValidatorTest {
         Mockito.when(routingContext.request()).thenReturn(httpServerRequest);
         Mockito.when(httpServerRequest.getHeader("ws-app")).thenReturn("");
         Mockito.when(routingContext.response()).thenReturn(httpServerResponse);
+        Mockito.when(httpServerResponse.setStatusCode(Mockito.anyInt())).thenReturn(httpServerResponse);
         Assert.assertFalse(EnumValidator.validateHeader(routingContext, "ws-app", App.values(),
                 App.class).isPresent());
     }
@@ -57,6 +59,7 @@ public class EnumValidatorTest {
         Mockito.when(routingContext.request()).thenReturn(httpServerRequest);
         Mockito.when(httpServerRequest.getHeader("ws-app")).thenReturn("WTF");
         Mockito.when(routingContext.response()).thenReturn(httpServerResponse);
+        Mockito.when(httpServerResponse.setStatusCode(Mockito.anyInt())).thenReturn(httpServerResponse);
         Assert.assertFalse(EnumValidator.validateHeader(routingContext, "ws-app", App.values(),
                 App.class).isPresent());
     }
@@ -75,6 +78,7 @@ public class EnumValidatorTest {
         Mockito.when(routingContext.request()).thenReturn(httpServerRequest);
         Mockito.when(httpServerRequest.getParam("app")).thenReturn("");
         Mockito.when(routingContext.response()).thenReturn(httpServerResponse);
+        Mockito.when(httpServerResponse.setStatusCode(Mockito.anyInt())).thenReturn(httpServerResponse);
         Assert.assertFalse(EnumValidator.validatePathParam(routingContext, "app", App.values(),
                 App.class).isPresent());
     }
@@ -84,6 +88,7 @@ public class EnumValidatorTest {
         Mockito.when(routingContext.request()).thenReturn(httpServerRequest);
         Mockito.when(httpServerRequest.getParam("app")).thenReturn("WTF");
         Mockito.when(routingContext.response()).thenReturn(httpServerResponse);
+        Mockito.when(httpServerResponse.setStatusCode(Mockito.anyInt())).thenReturn(httpServerResponse);
         Assert.assertFalse(EnumValidator.validatePathParam(routingContext, "app", App.values(),
                 App.class).isPresent());
     }

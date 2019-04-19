@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.zdusza</groupId>
     <artifactId>service-lib</artifactId>
-    <version>3.1.1</version>
+    <version>3.2.0</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <domain-lib.version>3.0.0</domain-lib.version>
+        <domain-lib.version>3.1.0</domain-lib.version>
         <dao-lib.version>2.1.0</dao-lib.version>
         <java.version>10</java.version>
         <vertx.version>3.5.4</vertx.version>
@@ -64,7 +64,6 @@
             <groupId>io.vertx</groupId>
             <artifactId>vertx-unit</artifactId>
             <version>${vertx.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
@@ -220,16 +219,16 @@
 
     <repositories>
         <repository>
-            <id>central</id>
-            <name>Maven Repository Switchboard</name>
-            <layout>default</layout>
-            <url>http://repo1.maven.org/maven2</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
             <releases><enabled>true</enabled><updatePolicy>always</updatePolicy></releases>
             <snapshots><enabled>true</enabled><updatePolicy>always</updatePolicy></snapshots>
         </repository>
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <layout>default</layout>
+            <url>http://repo1.maven.org/maven2</url>
             <releases><enabled>true</enabled><updatePolicy>always</updatePolicy></releases>
             <snapshots><enabled>true</enabled><updatePolicy>always</updatePolicy></snapshots>
         </repository>

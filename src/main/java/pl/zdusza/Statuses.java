@@ -13,6 +13,9 @@ public final class Statuses {
     public static final int UNAUTHORIZED = 401;
     public static final String UNAUTHORIZED_MSG = "Unauthorized";
 
+    public static final int PRECONDITION_FAILED = 412;
+    public static final String PRECONDITION_FAILED_MSG = "Precondition Failed";
+
     public static final int INTERNAL_SERVER_ERROR = 500;
     public static final String INTERNAL_SERVER_ERROR_MSG = "Internal Server Error";
 }
