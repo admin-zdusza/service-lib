@@ -8,8 +8,10 @@ import org.junit.rules.ExpectedException;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static pl.zdusza.ConfigVariableResolver.getFlywayDatabaseConfig;
 import static pl.zdusza.ConfigVariableResolver.getVertxDatabaseConfig;
+import static pl.zdusza.ConfigVariableResolver.requiredBoolVariable;
 import static pl.zdusza.ConfigVariableResolver.requiredIntVariable;
 import static pl.zdusza.ConfigVariableResolver.requiredVariable;
 
@@ -33,6 +35,13 @@ public class ConfigVariableResolverTest {
         final String key = "TEST_KEY";
         final String val = "1";
         assertEquals(valueOf(parseInt(val)), requiredIntVariable(new JsonObject().put(key, val), key));
+    }
+
+    @Test
+    public final void testShouldGetBoolVariableFromConfig() {
+        final String key = "TEST_KEY";
+        final String val = "true";
+        assertTrue(requiredBoolVariable(new JsonObject().put(key, val), key));
     }
 
     @Test

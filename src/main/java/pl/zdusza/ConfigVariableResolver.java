@@ -33,6 +33,10 @@ public final class ConfigVariableResolver {
         return Integer.parseInt(requiredVariable(config, name));
     }
 
+    public static Boolean requiredBoolVariable(final JsonObject config, final String name) {
+        return Boolean.valueOf(requiredVariable(config, name));
+    }
+
     public static JsonObject getVertxDatabaseConfig(final String process, final JsonObject config) {
         final String databaseUrl = requiredVariable(config, "DATABASE_URL");
         final String[] splittedArray = databaseUrl.split("[@/:]");
