@@ -7,6 +7,9 @@ public final class Statuses {
 
     public static final int SUCCESS = 200;
 
+    public static final int MOVED_PERMANENTLY = 301;
+    public static final String MOVED_PERMANENTLY_MSG = "Moved Permanently";
+
     public static final int BAD_REQUEST = 400;
     public static final String BAD_REQUEST_MSG = "Bad Request";
 

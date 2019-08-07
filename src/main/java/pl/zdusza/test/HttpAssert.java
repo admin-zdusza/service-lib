@@ -51,7 +51,7 @@ public final class HttpAssert {
     public static <T> Handler<AsyncResult<T>> assert412(final TestContext tc, final Async async, final String message) {
         return v -> {
             if (v.succeeded()) {
-                tc.fail("Test case should fail with 428 but succedded");
+                tc.fail("Test case should fail with 412 but succedded");
             } else {
                 tc.assertEquals(v.cause().getMessage(), Statuses.PRECONDITION_FAILED
                         + " " + Statuses.PRECONDITION_FAILED_MSG
