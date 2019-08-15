@@ -1,6 +1,7 @@
 package pl.zdusza.validators;
 
 import io.vertx.ext.web.RoutingContext;
+import pl.zdusza.EnumParser;
 import pl.zdusza.Statuses;
 
 import java.util.Arrays;
