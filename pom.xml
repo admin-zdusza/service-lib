@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.zdusza</groupId>
     <artifactId>service-lib</artifactId>
-    <version>4.2.0</version>
+    <version>5.0.0</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <domain-lib.version>4.2.0</domain-lib.version>
-        <dao-lib.version>4.2.0</dao-lib.version>
+        <domain-lib.version>5.0.0</domain-lib.version>
+        <dao-lib.version>5.0.1</dao-lib.version>
         <java.version>10</java.version>
         <vertx.version>3.5.4</vertx.version>
         <commons.version>1.6</commons.version>
@@ -222,7 +222,7 @@
             <id>central</id>
             <name>Maven Repository Switchboard</name>
             <layout>default</layout>
-            <url>http://repo1.maven.org/maven2</url>
+            <url>https://repo1.maven.org/maven2</url>
             <releases><enabled>true</enabled><updatePolicy>always</updatePolicy></releases>
             <snapshots><enabled>true</enabled><updatePolicy>always</updatePolicy></snapshots>
         </repository>
