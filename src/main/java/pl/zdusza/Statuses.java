@@ -10,6 +10,9 @@ public final class Statuses {
     public static final int MOVED_PERMANENTLY = 301;
     public static final String MOVED_PERMANENTLY_MSG = "Moved Permanently";
 
+    public static final int FOUND = 302;
+    public static final String FOUND_MSG = "Found";
+
     public static final int BAD_REQUEST = 400;
     public static final String BAD_REQUEST_MSG = "Bad Request";
 
