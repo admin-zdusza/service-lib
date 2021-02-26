@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.zdusza</groupId>
     <artifactId>service-lib</artifactId>
-    <version>6.2.0</version>
+    <version>7.0.0</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <domain-lib.version>6.1.0</domain-lib.version>
-        <dao-lib.version>6.1.0</dao-lib.version>
+        <domain-lib.version>7.0.0</domain-lib.version>
+        <dao-lib.version>7.0.0</dao-lib.version>
         <java.version>10</java.version>
         <vertx.version>3.5.4</vertx.version>
         <commons.version>1.6</commons.version>
@@ -19,7 +19,8 @@
         <logback.version>1.2.3</logback.version>
         <junit.version>4.12</junit.version>
         <mockito.version>2.23.4</mockito.version>
-        <testcontainers.version>1.9.1</testcontainers.version>
+        <testcontainers.version>1.15.2</testcontainers.version>
+        <net.java.dev.jna.version>5.5.0</net.java.dev.jna.version>
         <test.code.coverage.threshold>0.90</test.code.coverage.threshold>
     </properties>
 
@@ -81,7 +82,21 @@
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-api</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.java.dev.jna</groupId>
+                    <artifactId>jna</artifactId>
+                </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>${net.java.dev.jna.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

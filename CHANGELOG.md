@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [7.0.0] - 2020-02-26
+### Changed
+- Domain and Dao lib version.
+
 ## [6.2.0] - 2020-12-28
 ### Changed
 - Added 302 http status.
