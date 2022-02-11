@@ -13,7 +13,7 @@
         <domain-lib.version>7.1.0</domain-lib.version>
         <dao-lib.version>7.2.0</dao-lib.version>
         <java.version>10</java.version>
-        <vertx.version>3.5.4</vertx.version>
+        <vertx.version>3.9.4</vertx.version>
         <commons.version>1.6</commons.version>
         <slf4j.version>1.7.25</slf4j.version>
         <logback.version>1.2.3</logback.version>
